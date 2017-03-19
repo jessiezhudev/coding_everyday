@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script type="text/javascript">
+      var parse =  function(str){
+        var results = "";
+        // 避免转换过程中出错造成页面卡顿
+        try{
+
+        } catch(e){
+
+        } finally{
+
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <textarea name="name" rows="8" cols="80" id="txt">
+      <p>sks <img src="null" alt="" onerror="alert(1)"/></p>
+    </textarea>
+    <button type="button" name="button" id="btn">评论</button>
+    <button type="button" name="button" id="get">获取评论</button>
+    <script type="text/javascript">
+      var btn = document.getElementById("btn");
+      var get = document.getElementById("get");
+      var txt = document.getElementById("txt");
+      btn.addEventListener('click', function(){
+        var xhr = new XMLHttpRequest();
+        var url = "/comment?comment=" + txt.value;
+        //打开
+        xhr.open('GET', url, true);
+        //定义对象在客户端的响应方式, 监听连接状态
+        xhr.onreadystatechange = function(){
+          if(xhr.readyState == 4){
+            // 状态为4代表通信成功
+            if(xhr.status == 200){
+              //200 代表完全成功
+              console.log(xhr)
+            }else{
+              console.log('error')
+            }
+          }
+        }
+        // 成功后，发起客户端和服务端的链接
+        xhr.send();
+      });
+      // 获取评论
+      get.addEventListener('click', function(){
+        var xhr = new XMLHttpRequest();
+        var url = "/getComment";
+        xhr.open('GET', url, true);
+        xhr.onreadystatechange = function(){
+          if(xhr.readyState == 4){
+            if(xhr.status == 200){
+              console.log(data)
+            }else{
+              console.log('error')
+            }
+          }
+        }
+        xhr.send();
+      })
+    </script>
+  </body>
+</html>
