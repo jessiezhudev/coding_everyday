@@ -3,14 +3,15 @@ var path = require('path');
 module.exports = {
   entry: './src/app.js',
   output: {
-    path: './dist',
+    path: path.resolve(__dirname, 'dist'),
     filename: 'js/[name].bundle.js'
   },
   plugins: [
     new htmlWebpackPlugin({
       template: 'index.html',
       filename: 'index.html',
-      inject: 'body'
+      inject: 'body',
+      title: 'web app'
     })
   ],
   module:{
@@ -23,9 +24,35 @@ module.exports = {
           presets:['latest']
         }
       },
+      // 解析从右向左 postcss放在最右
       {
         test: /\.css$/,
-        loader:'style-loader!css-loader'
+        use:[{
+          loader: 'style-loader'
+        },
+          {
+            loader: 'css-loader'
+          },
+          {loader: 'postcss-loader',
+          options: {
+            plugins: function(){
+              return [require('autoprefixer')]
+            }
+          }
+        }
+        ]
+      },
+      {
+        test: /\.less$/,
+        loader: 'style-loader!css-loader!postcss-loader!less-loader'
+      },
+      {
+        test: /\.html$/,
+        loader: 'html-loader'
+      },
+      {
+        test: /\.tpl$/,
+        loader: 'ejs-loader'
       }
     ]
     //preset 是babel的一个插件，由于语法每年在变，它用于转换特定的js语法。
