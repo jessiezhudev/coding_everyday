@@ -15,44 +15,56 @@ module.exports = {
     })
   ],
   module:{
-    loaders:[
-      {
-        test: /\.js$/,
-        exclude: path.resolve(__dirname, 'node_modules'),
-        loader: 'babel-loader',
-        query:{
-          presets:['latest']
-        }
-      },
-      // 解析从右向左 postcss放在最右
+    rules: [
       {
         test: /\.css$/,
-        use:[{
-          loader: 'style-loader'
-        },
-          {
-            loader: 'css-loader'
-          },
-          {loader: 'postcss-loader',
-          options: {
-            plugins: function(){
-              return [require('autoprefixer')]
-            }
-          }
-        }
+        use: [
+          'style-loader',
+          'css-loader?importLoaders=1',
+          'postcss-loader'
         ]
       },
       {
         test: /\.less$/,
-        loader: 'style-loader!css-loader!postcss-loader!less-loader'
+        use: [
+          'style-loader',
+          'css-loader?importLoaders=1',
+          'postcss-loader',
+          'less-loader'
+        ]
       },
       {
         test: /\.html$/,
-        loader: 'html-loader'
+        use: 'html-loader'
+      },
+      {
+        test: /\.js$/,
+        exclude: path.resolve(__dirname, 'node_modules'),
+        include: path.resolve(__dirname, 'src'),
+        use:[
+          {
+            loader: 'babel-loader',
+            query: {
+              presets: 'latest'
+            }
+          }
+        ]
       },
       {
         test: /\.tpl$/,
-        loader: 'ejs-loader'
+        use: 'ejs-loader'
+      },
+      {
+        test: /\.(jpg|png|gif|svg)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            query: {
+              limit: 70000,
+              name: 'assets/[name]-[hash:5].[ext]'
+            }
+          }
+        ]
       }
     ]
     //preset 是babel的一个插件，由于语法每年在变，它用于转换特定的js语法。
