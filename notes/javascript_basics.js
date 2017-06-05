@@ -48,4 +48,7 @@ var request = new XMLHttpRequest();
 // 完整的HTTP请求
 // 1. 建立TCP连接 2. Web浏览器向Web服务器发送请求命令 3.Web浏览器发送请求头信息 4. Web服务器应答 5. Web服务器发送应答头信息 6. Web服务器向Web浏览器发送数据 7. Web服务器关闭TCP连接
 // 5. compare let with const
-//
+// `const` is a signal that the identifier won’t be reassigned.
+// `let`, is a signal that the variable may be reassigned
+// variable hoisted
+// let 在变量声明前无法访问它
