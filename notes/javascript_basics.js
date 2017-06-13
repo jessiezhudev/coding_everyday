@@ -41,8 +41,34 @@ MyObject.prototype.onClick = function(e) {
 
 // 3. AJAX原理
 // 无需重新加载整个网页的情况下，能够部分更新网页的技术
-// 同步VS异步 XMLHttpRequest出现之前，网页都采取的是令人抓狂同步的方式，ex: 填写长表单后某项填写错误整个页面的刷新。
-var request = new XMLHttpRequest();
+// 同步VS异步 XMLHttpRequest出现之前，网页都采取的是令人抓狂同步的方式，ex: 填写长表单后某项填写错误整个页面的刷新。简单的数据，都要返回一个完整的HTML页。
+var xhr = new XMLHttpRequest();
+// 打开
+xhr.open('GET', url, true);
+// 定义在客户端的响应方式，监听连接状态
+xhr.onreadystatechange = function(){
+  if(xhr.readyState == 4) {
+    //状态为4表示通信成功
+    if(xhr.status == 200) {
+      //200表示完全成功
+      console.log(xhr)
+    }else{
+      console.log(error)
+    }
+  }
+  // 成功后，发起客户端和服务端的链接
+  xhr.send();
+}
+
+// TODO 封装ajax
+
+
+// Ajax的工作原理相当于在用户和服务器之间加了—个中间层(AJAX引擎),使用户操作与服务器响应异步化。并不是所有
+// 的用户请求都提交给服务器,像—些数据验证和数据处理等都交给Ajax引擎自己来做, 只有确定需要从服务器读取新数据
+// 时再由Ajax引擎代为向服务器提交请求。 简言之：从服务端获取数据，再用JavaScript操作DOM更新页面
+// The Document Object Model (DOM) is an application programming interface (API) for valid HTML and well-formed XML documents.
+//  XML is being used as a way of representing many different kinds of information that may be stored in diverse systems,
+
 // 4. HTTP
 // HTTP 无状态协议，不建立持久链接。整个过程是没有记忆的。
 // 完整的HTTP请求
