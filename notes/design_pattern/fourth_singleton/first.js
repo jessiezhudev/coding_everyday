@@ -7,6 +7,7 @@ Singleton.prototype.name = function(){
   alert(this.name)
 }
 //TODO 为什么这里没有prototype，这是一种什么写法？
+//getInstance是写在对象上的静态方法。prototype中的方法只有在实例化一个对象的时候，才能被调用
 Singleton.getInstance = function(name){
   if(!this.instance) {
     this.instance = new Singleton(name)

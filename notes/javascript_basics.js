@@ -78,3 +78,21 @@ xhr.onreadystatechange = function(){
 // `let`, is a signal that the variable may be reassigned
 // variable hoisted
 // let 在变量声明前无法访问它
+
+// 6. image lazy loading
+// src->loading.gif data-src-> real address, when scroll to the position of image, replace it
+// core function scrollTop()
+
+// 7. 同构直出
+// 原文地址：https://github.com/joeyguo/blog/
+// 传统的做法要多次向服务器发送请求，得到HTML, CSS, JS。并且要加载JS才开始请求数据后渲染页面，大大增加了首屏渲染的时间
+// 同构直出-> 在服务器返回HTML之前请求数据，直接对页面进行渲染后返回 TODO 具体如何在服务端渲染？ 由于前后端语言不通，页面模板无法服用。Node的出现改变了这个情况。
+// 数据直出->数据与HTML一起返回。等待JS加载完成后将数据与HTML结合处理
+// TODO what is CGI? how CDN works?
+// HTTP建立一次完整的请求返回耗时明显，而在服务端直接进行数据拉取，后端之间是处于同一个内网上，所以传输十分高效。
+// 优化请求量的做法 -> 在页面文档不大的情况下，将CSS内联到HTML中
+// React提供了服务端渲染的API
+// React客户端与服务端如何渲染？ 客户端拿到服务端的HTML如何做出响应？那客户端的HTML页面呢？
+// ReactDOMServer提供renderToString和renderToStaticMarkup (多数使用renderToString, 为组件增加
+// checksum, React在客户端通过checksum判断是否需要重新render)
+// TODO what is 挂载DOM？
