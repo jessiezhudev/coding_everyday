@@ -6,9 +6,12 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var lessMiddleware = require('less-middleware');
 //1. require some dependencies
+
+//mongoose part
+var mongoose = require('mongoose');
 //
 var index = require('./routes/index');
-var users = require('./routes/users');
+// var users = require('./routes/users');
 var app = express();
 //2. create a app using express, where app get started
 
@@ -27,7 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //this is where routes get used
 app.use('/', index); //index is defined above
-app.use('/users', users);
+// app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -47,4 +50,18 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+//development environment only, mongoose part
+if ('development' == app.get('dev')) {
+  mongoose.connect('mongodb://55.55.5.5/mongo');
+  //it's a database address, not working on my computer
+}
+
+// create a model for mongoose, and create a schema
+mongoose.model('users', {name: String})
+app.get('/users', function(req, res){
+  // mongoose.model('users').find(function(err, users){
+  //   res.send(users)
+  // })
+  res.send(200)
+})
 module.exports = app;

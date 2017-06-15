@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "mongoose": "^4.10.6",
     "underscore": "^1.8.3"
   }
 }

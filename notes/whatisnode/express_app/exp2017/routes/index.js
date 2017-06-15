@@ -18,12 +18,12 @@ var router = express.Router();
   // req.query.name //query can get all the params
 // })
 
-// router.get('/', function(req, res, next){
-//   console.log(req.query);
-// })
-router.get('/users/:id', function(req, res, next){
-  console.log(req.params);
-  res.send(req.params.id, 200);
-});
+router.get('/', function(req, res, next){
+  res.send(200)
+})
+// router.get('/users/:id', function(req, res, next){
+//   console.log(req.params);
+//   res.send(req.params.id, 200);
+// });
 
 module.exports = router;
