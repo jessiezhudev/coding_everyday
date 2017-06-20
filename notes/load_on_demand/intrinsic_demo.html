@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Intrinsic placeholders</title>
+  <link rel="stylesheet" href="intrinsic_demo.css">
+
+</head>
+<body>
+  <!-- picture标签的使用方法, great
+  <picture>
+    <source srcset="./test-big.jpg" media="(min-width: 600px)">
+    <img src="./test-small.jpg"/>
+  </picture> -->
+
+  <!-- intrinsic picture的实现 -->
+  <picture class="intrinsic intrinsic--4x3">
+    <source media="(min-width: 500px)" srcset="./test-big.jpg">
+    <img class="intrinsic-item" srcset="./test-small.jpg" alt="">
+  </picture>
+</body>
+</html>

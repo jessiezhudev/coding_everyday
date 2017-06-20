@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Progressive Image Loading</title>
+  <link rel="stylesheet" href="./progressive_img_loading.css">
+</head>
+<body>
+  <!-- <figure> 标签规定独立的流内容（图像、图表、照片、代码等等）。 -->
+  <!-- <figure> -->
+    <!-- <div> -->
+      <!-- <div/>  -->
+      <!-- this div keeps the aspect ratio so the placeholder doesn't collapse -->
+      <!-- <img/>  -->
+      <!-- this is a tiny image with a resolution of e.g. ~27x17 and low quality -->
+      <!-- <canvas/>  -->
+      <!-- takes the above image and applies a blur filter -->
+      <!-- <img/>  -->
+      <!-- the large image to be displayed -->
+      <!-- <noscript/>  -->
+      <!-- fallback for no JS -->
+    <!-- </div> -->
+  <!-- </figure> -->
+  <!-- concrete example -->
+  <!-- <figure name="7012" id="7012" class="graf--figure graf--layoutFillWidth graf-after--h4">
+    <div class="aspectRatioPlaceholder is-locked">
+      <div class="aspect-ratio-fill" style="padding-bottom: 66.7%;"></div>
+      <div class="progressiveMedia js-progressiveMedia graf-image is-canvasLoaded is-imageLoaded" data-image-id="1*sg-uLNm73whmdOgKlrQdZA.jpeg" data-width="2000" data-height="1333" data-scroll="native">
+        <img src="https://cdn-images-1.medium.com/freeze/max/27/1*sg-uLNm73whmdOgKlrQdZA.jpeg?q=20" crossorigin="anonymous" class="progressiveMedia-thumbnail js-progressiveMedia-thumbnail">
+        <canvas class="progressiveMedia-canvas js-progressiveMedia-canvas" width="75" height="47"></canvas>
+        <img class="progressiveMedia-image js-progressiveMedia-image __web-inspector-hide-shortcut__" data-src="https://cdn-images-1.medium.com/max/1800/1*sg-uLNm73whmdOgKlrQdZA.jpeg" src="https://cdn-images-1.medium.com/max/1800/1*sg-uLNm73whmdOgKlrQdZA.jpeg">
+        <noscript class="js-progressiveMedia-inner">&lt;img class="progressiveMedia-noscript js-progressiveMedia-inner" src="https://cdn-images-1.medium.com/max/1800/1*sg-uLNm73whmdOgKlrQdZA.jpeg"&gt;</noscript>
+      </div>
+    </div>
+  </figure> -->
+
+  <!-- simple way to reproduce the medium effect without using canvas -->
+  <div class="placeholder" data-large="https://cdn-images-1.medium.com/max/1800/1*sg-uLNm73whmdOgKlrQdZA.jpeg">
+    <img src="https://cdn-images-1.medium.com/freeze/max/27/1*sg-uLNm73whmdOgKlrQdZA.jpeg?q=20" class="img-small">
+    <div style="padding-bottom: 66.6%;"></div>
+  </div>
+  <script>
+    window.onload = function() {
+      var placeholder = document.querySelector('.placeholder'),
+          small = placeholder.querySelector('.img-small')
+      // 1: load small image and show it
+      var img = new Image();
+      img.src = small.src;
+      img.onload = function () {
+       small.classList.add('loaded');
+      };
+
+      // 2: load large image
+      var imgLarge = new Image();
+      imgLarge.src = placeholder.dataset.large;
+      imgLarge.onload = function () {
+        imgLarge.classList.add('loaded');
+      };
+      placeholder.appendChild(imgLarge);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+/*Intrinsic ratio*/
+.intrinsic {
+  display: block;
+  position: relative;
+  height: 0;
+  width: 100%;
+  padding-top: 100%;
+  background: #f0f0f0;
+}
+.intrinsic.intrinsic--square {
+  padding-top: 100%;
+}
+
+.intrinsic.intrinsic--4x3 {
+  padding-top: 75%;
+}
+
+.intrinsic.intrinsic--16x9 {
+  padding-top: 56.25%;
+}
+
+.intrinsic .intrinsic-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
