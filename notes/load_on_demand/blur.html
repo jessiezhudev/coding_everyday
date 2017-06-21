@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>CSS3 Filter Effects</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    .background-image {
+      background-image: url('http://666a658c624a3c03a6b2-25cda059d975d2f318c03e90bcf17c40.r92.cf1.rackcdn.com/unsplash_527bf56961712_1.JPG');
+      background-size: cover;
+      display: block;
+      filter: blur(5px);
+      -webkit-filter: blur(5px);
+      height: 800px;
+      left: 0;
+      position: fixed;
+      right: 0;
+      z-index: 1;
+    }
+
+    .content {
+      background: rgba(255, 255, 255, 0.35);
+      border-radius: 3px;
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      top: 10px;
+      left: 0;
+      position: fixed;
+      margin-left: 20px;
+      margin-right: 20px;
+      right: 0;
+      z-index: 2;
+      padding: 0 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="background-image"></div>
+  <div class="content">
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aliquam erat in ante malesuada, facilisis semper nulla semper. Phasellus sapien neque, faucibus in malesuada quis, lacinia et libero. Sed sed turpis tellus. Etiam ac aliquam tortor, eleifend rhoncus metus. Ut turpis massa, sollicitudin sit amet molestie a, posuere sit amet nisl. Mauris tincidunt cursus posuere. Nam commodo libero quis lacus sodales, nec feugiat ante posuere. Donec pulvinar auctor commodo. Donec egestas diam ut mi adipiscing, quis lacinia mauris condimentum. Quisque quis odio venenatis, venenatis nisi a, vehicula ipsum. Etiam at nisl eu felis vulputate porta.</p>
+    <p>Fusce ut placerat eros. Aliquam consequat in augue sed convallis. Donec orci urna, tincidunt vel dui at, elementum semper dolor. Donec tincidunt risus sed magna dictum, quis luctus metus volutpat. Donec accumsan et nunc vulputate accumsan. Vestibulum tempor, erat in mattis fringilla, elit urna ornare nunc, vel pretium elit sem quis orci. Vivamus condimentum dictum tempor. Nam at est ante. Sed lobortis et lorem in sagittis. In suscipit in est et vehicula.</p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Scroll</title>
+  <style>
+    #status{
+      position: fixed;
+      left: 0;
+      top: 0;
+      font-size: 24px;
+    }
+    #wrap{
+      width: 800px;
+      margin: 0 auto;
+    }
+    .newData{
+      height: 1000px;
+      background: blue;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="status">0 | 0</div>
+  <div id="wrap">
+    <img src='./eib.jpg'/>
+  </div>
+  <script>
+    function yScroll(){
+      var wrap = document.getElementById('wrap');
+      var yHeight = wrap.offsetHeight; //get the page content height
+      var yScroll = window.pageYOffset; //get how much the scrollbar goes
+      var yCurrentLocation = window.innerHeight + yScroll;
+      if (yCurrentLocation >= yHeight) {
+        wrap.innerHTML += '<div class="newData"></div>'
+      }
+      var status = document.getElementById('status');
+      status.innerHTML = yHeight + '|' + yCurrentLocation;
+    }
+    //throttle函数接受的参数
+    //延迟执行的函数function，延迟执行的时间interval
+    var throttle = function(fn, interval){
+      var __self = fn, //保存对原函数的引用
+        timer, //定时器
+        firstTime = true; //是否为第一次调用
+      return function(){
+        var args = arguments,
+        __me = this;
+        if(firstTime){
+          __self.apply(__me, args);
+          firstTime = false;
+        };
+        if(timer){  //如果定时器还在，说明前一次执行还未完成
+          return false;
+        };
+        timer = setTimeout(function(){
+          clearTimeout(timer);
+          timer = null;
+          __self.apply(__me, args);
+        }, interval || 500);
+      }
+    }
+    window.onscroll = throttle(yScroll, 200);
+  </script>
+</body>
+</html>
