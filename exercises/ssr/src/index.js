@@ -7,10 +7,12 @@
 // transferring common js to es6 syntax by using webpack
 import express from 'express'
 import renderer from './helpers/renderer.js'
+import createStore from './helpers/createStore.js'
 const app = express()
 app.use(express.static('public'))
 app.get('*', (req, res)=>{
-    res.send(renderer())
+    const store = createStore()
+    res.send(renderer(req, store))
 })
 
 app.listen(3000, () => {
