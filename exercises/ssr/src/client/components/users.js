@@ -1,10 +1,35 @@
 import React, {Component} from 'react'
-class User extends Component {
+import {connect} from 'react-redux'
+import {fetchUsers} from '../actions'
+class UsersList extends Component {
+    componentDidMount() {
+        this.props.fetchUsers()
+    }
+    renderList() {
+        return this.props.users.map((user) => {
+            return (
+                <li key={user.id}>
+                    {user.name}
+                </li>
+            )
+        })
+    }
     render() {
         return (
             <div>
-                a list of users
+                a list of users:
+                <ul>
+                    {this.renderList()}
+                </ul>
             </div>
         )
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        users: state.users
+    }
+}
+
+export default connect (mapStateToProps, {fetchUsers})(UsersList)

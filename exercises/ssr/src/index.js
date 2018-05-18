@@ -8,6 +8,7 @@
 import express from 'express'
 import renderer from './helpers/renderer.js'
 import createStore from './helpers/createStore.js'
+import 'babel-polyfill'
 const app = express()
 app.use(express.static('public'))
 app.get('*', (req, res)=>{
