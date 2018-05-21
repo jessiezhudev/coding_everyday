@@ -1,7 +1,7 @@
 const path = require('path')
 module.exports = {
     //tell webpack the root file of our application
-    entry: './src/app.js',
+    entry: './src/client.js',
 
     //tell webpack where to put the output file that is generated
     output: {
