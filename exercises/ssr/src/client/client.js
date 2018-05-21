@@ -8,11 +8,12 @@ import {Provider} from 'react-redux'
 import reducers from './reducers'
 const store = createStore(reducers, {}, applyMiddleware(thunk))
 import 'babel-polyfill'
+import {renderRoutes} from 'react-router-config'
 
 ReactDom.hydrate(
     <Provider store={store}>
         <BrowserRouter> 
-            <Routes/>
+            <div>{renderRoutes(Routes)}</div>
         </BrowserRouter>
     </Provider>
     , 
