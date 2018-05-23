@@ -16,10 +16,21 @@ app.use(express.static('public'))
 app.get('*', (req, res)=>{
     const store = createStore()
     //server端根据用户访问的path手动调用组件中的LoadData方法
-    matchRoutes(Routes, req.path).forEach(({route})=>{
-        return route.loadData? route.loadData() : null
+    const promises = matchRoutes(Routes, req.path)
+        .map(({route})=>{
+        return route.loadData? route.loadData(store) : null
+        })
+        .map(promise => {
+            if(promise) {
+                return new Promise((resolve, reject) => {
+                    promise.then(resolve).catch(resolve)
+                })
+            }
+        })
+    Promise.all(promises).then(()=> {
+        res.send(renderer(req, store))
+
     })
-    res.send(renderer(req, store))
 })
 
 app.listen(3000, () => {
