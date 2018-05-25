@@ -1,5 +1,4 @@
 import {renderToString} from 'react-dom/server'
-import Home from '../client/components/Home'
 import React from 'React'
 import {StaticRouter} from 'react-router-dom'
 import Routes from '../client/Routes'
@@ -16,6 +15,9 @@ export default (req, store) =>{
     <html>
         <body>
             <div id="root">${content}</div>
+            <script>
+                window._initialState = ${JSON.stringify(store.getState())}
+            </script>
             <script src="bundle.js"></script>
         </body>
     </html>

@@ -11,10 +11,18 @@ import createStore from './helpers/createStore.js'
 import 'babel-polyfill'
 import {matchRoutes} from 'react-router-config'
 import Routes from './client/Routes'
+import proxy from 'express-http-proxy'
+
 const app = express()
+app.use('/api', proxy('http://react-ssr-api.herokuapp.com', {
+    proxyReqOptDecorator(opts) {
+        opts.headers['x-forwarded-host'] = 'localhost:3000'
+        return opts
+    }
+}))
 app.use(express.static('public'))
 app.get('*', (req, res)=>{
-    const store = createStore()
+    const store = createStore(req)
     //server端根据用户访问的path手动调用组件中的LoadData方法
     const promises = matchRoutes(Routes, req.path)
         .map(({route})=>{
