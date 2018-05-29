@@ -7,4 +7,7 @@ const HomePage = () => {
 }
 //JSX syntax
 
-export default HomePage
+export default {
+    component: HomePage
+}
+

@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchUsers} from '../actions'
-class UsersPage extends Component {
+class UsersListPage extends Component {
     componentDidMount() {
         this.props.fetchUsers()
     }
@@ -32,9 +32,12 @@ function mapStateToProps(state) {
     }
 }
 
-export function loadData(store) {
+function loadData(store) {
     // console.log('loadData')
     return store.dispatch(fetchUsers())
 }
 
-export default connect (mapStateToProps, {fetchUsers})(UsersPage)
+export default {
+    loadData,
+    component: connect (mapStateToProps, {fetchUsers})(UsersListPage)
+}
