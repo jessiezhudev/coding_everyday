@@ -8,10 +8,9 @@ app.use(express.static('public'))
 app.get('/', (req, res)=>{
     const content = renderToString(<Home/>)
     const html = `
-            <body>
-            <div id="app">${content}</div>
-            <script src="bundle.js"></script>
-        </body>
+    <body>
+        <div id="app">${content}</div>
+    </body>
     `
     res.send(html)
 })
