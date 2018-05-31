@@ -1,7 +1,7 @@
 import React from 'react'
 
-const Home = () => {
+const HomePage = () => {
     return <div onClick={()=>{console.log('clicking home')}}>This is Home Page</div>
 }
 
-export default Home
+export default HomePage
