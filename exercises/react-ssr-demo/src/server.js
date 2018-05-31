@@ -10,6 +10,7 @@ app.get('/', (req, res)=>{
     const html = `
     <body>
         <div id="app">${content}</div>
+        <script src="bundle.js"></script>
     </body>
     `
     res.send(html)
