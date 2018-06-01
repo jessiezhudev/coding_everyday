@@ -1,14 +1,15 @@
 import React, {Component} from 'react'
 import {fetchGoods} from '../actions'
+import {connect} from 'react-redux'
 class goodsPage extends Component {
     componentDidMount() {
         this.props.fetchGoods()
     }
     renderList() {
-        return this.props.goods.map((item) =>{
+        return this.props.goods.map((item, index) =>{
             return (
-                <li key={item.id}>
-                    {item.name}
+                <li key={index}>
+                    {item}
                 </li>
             )
         })
@@ -30,6 +31,7 @@ function mapStateToProps(state) {
         goods: state.goods
     }
 }
+
 
 function loadData(store) {
     return store.dispatch(fetchGoods())
