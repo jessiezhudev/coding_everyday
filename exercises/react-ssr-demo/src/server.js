@@ -1,12 +1,12 @@
 import express from 'express'
 import React from 'react'
 import {renderToString} from 'react-dom/server'
-import Home from './pages/home.js'
+import HomePage from './pages/homePage.js'
 
 const app = express()
 app.use(express.static('public'))
 app.get('/', (req, res)=>{
-    const content = renderToString(<Home/>)
+    const content = renderToString(<HomePage/>)
     const html = `
     <body>
         <div id="app">${content}</div>
