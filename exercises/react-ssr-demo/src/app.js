@@ -1,4 +1,4 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import Home from './pages/Home'
-ReactDom.render(<Home/>, document.getElementById('app'))
+import HomePage from './pages/HomePage'
+ReactDom.render(<HomePage/>, document.getElementById('app'))
